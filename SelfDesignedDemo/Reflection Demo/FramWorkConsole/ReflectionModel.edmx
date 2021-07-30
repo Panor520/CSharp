@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FunctionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FunctionParameters">
+          <Key>
+            <PropertyRef Name="ParameterID" />
+          </Key>
+          <Property Name="ParameterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FunctionID" Type="int" Nullable="false" />
+          <Property Name="ParameterName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DataType" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RequireFlag" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Functions">
+          <Key>
+            <PropertyRef Name="FunctionID" />
+          </Key>
+          <Property Name="FunctionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FunctionLabel" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DllName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SpaceName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ClassName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="FunctionName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ReflectionDemo.dbo.TaskFunctionParamValues' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TaskFunctionParamValues">
+          <Key>
+            <PropertyRef Name="TaskUID" />
+            <PropertyRef Name="TaskFunctionUID" />
+            <PropertyRef Name="TaskFunctionParamUID" />
+            <PropertyRef Name="TaskFunctionParamValue" />
+          </Key>
+          <Property Name="TaskUID" Type="int" Nullable="false" />
+          <Property Name="TaskFunctionUID" Type="int" Nullable="false" />
+          <Property Name="TaskFunctionParamUID" Type="int" Nullable="false" />
+          <Property Name="TaskFunctionParamValue" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TaskFunctions">
+          <Key>
+            <PropertyRef Name="TaskFunctionUID" />
+          </Key>
+          <Property Name="TaskFunctionUID" Type="int" Nullable="false" />
+          <Property Name="TaskUID" Type="int" Nullable="false" />
+          <Property Name="FunctionUID" Type="int" Nullable="false" />
+          <Property Name="ExecutionOrder" Type="int" Nullable="false" />
+          <Property Name="ExecuteCondition" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Tasks">
+          <Key>
+            <PropertyRef Name="TaskUID" />
+          </Key>
+          <Property Name="TaskUID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaskName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Parameters_Functions">
+          <End Role="Functions" Type="Self.Functions" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FunctionParameters" Type="Self.FunctionParameters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Functions">
+              <PropertyRef Name="FunctionID" />
+            </Principal>
+            <Dependent Role="FunctionParameters">
+              <PropertyRef Name="FunctionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskFunctions_Tasks">
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TaskFunctions" Type="Self.TaskFunctions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="TaskUID" />
+            </Principal>
+            <Dependent Role="TaskFunctions">
+              <PropertyRef Name="TaskUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FunctionModelStoreContainer">
+          <EntitySet Name="FunctionParameters" EntityType="Self.FunctionParameters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Functions" EntityType="Self.Functions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaskFunctions" EntityType="Self.TaskFunctions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaskFunctionParamValues" EntityType="Self.TaskFunctionParamValues" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TaskFunctionParamValues].[TaskUID] AS [TaskUID], 
+    [TaskFunctionParamValues].[TaskFunctionUID] AS [TaskFunctionUID], 
+    [TaskFunctionParamValues].[TaskFunctionParamUID] AS [TaskFunctionParamUID], 
+    [TaskFunctionParamValues].[TaskFunctionParamValue] AS [TaskFunctionParamValue]
+    FROM [dbo].[TaskFunctionParamValues] AS [TaskFunctionParamValues]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Parameters_Functions" Association="Self.FK_Parameters_Functions">
+            <End Role="Functions" EntitySet="Functions" />
+            <End Role="FunctionParameters" EntitySet="FunctionParameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskFunctions_Tasks" Association="Self.FK_TaskFunctions_Tasks">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="TaskFunctions" EntitySet="TaskFunctions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FunctionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="FunctionParameter">
+          <Key>
+            <PropertyRef Name="ParameterID" />
+          </Key>
+          <Property Name="ParameterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FunctionID" Type="Int32" Nullable="false" />
+          <Property Name="ParameterName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DataType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RequireFlag" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Function" Relationship="Self.FK_Parameters_Functions" FromRole="FunctionParameters" ToRole="Functions" />
+        </EntityType>
+        <EntityType Name="Function">
+          <Key>
+            <PropertyRef Name="FunctionID" />
+          </Key>
+          <Property Name="FunctionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FunctionLabel" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DllName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SpaceName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClassName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FunctionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FunctionParameters" Relationship="Self.FK_Parameters_Functions" FromRole="Functions" ToRole="FunctionParameters" />
+        </EntityType>
+        <Association Name="FK_Parameters_Functions">
+          <End Role="Functions" Type="Self.Function" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FunctionParameters" Type="Self.FunctionParameter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Functions">
+              <PropertyRef Name="FunctionID" />
+            </Principal>
+            <Dependent Role="FunctionParameters">
+              <PropertyRef Name="FunctionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ReflectionDemoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FunctionParameters" EntityType="Self.FunctionParameter" />
+          <EntitySet Name="Functions" EntityType="Self.Function" />
+          <AssociationSet Name="FK_Parameters_Functions" Association="Self.FK_Parameters_Functions">
+            <End Role="Functions" EntitySet="Functions" />
+            <End Role="FunctionParameters" EntitySet="FunctionParameters" />
+          </AssociationSet>
+          <EntitySet Name="TaskFunctions" EntityType="FunctionModel.TaskFunction" />
+          <EntitySet Name="Tasks" EntityType="FunctionModel.Task" />
+          <AssociationSet Name="FK_TaskFunctions_Tasks" Association="FunctionModel.FK_TaskFunctions_Tasks">
+            <End Role="Task" EntitySet="Tasks" />
+            <End Role="TaskFunction" EntitySet="TaskFunctions" />
+          </AssociationSet>
+          <EntitySet Name="TaskFunctionParamValues" EntityType="FunctionModel.TaskFunctionParamValue" />
+        </EntityContainer>
+        <EntityType Name="TaskFunction">
+          <Key>
+            <PropertyRef Name="TaskFunctionUID" />
+          </Key>
+          <Property Name="TaskFunctionUID" Type="Int32" Nullable="false" />
+          <Property Name="TaskUID" Type="Int32" Nullable="false" />
+          <Property Name="FunctionUID" Type="Int32" Nullable="false" />
+          <Property Name="ExecutionOrder" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Task" Relationship="FunctionModel.FK_TaskFunctions_Tasks" FromRole="TaskFunction" ToRole="Task" />
+          <Property Name="ExecuteCondition" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="TaskUID" />
+          </Key>
+          <Property Name="TaskUID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TaskFunctions" Relationship="FunctionModel.FK_TaskFunctions_Tasks" FromRole="Task" ToRole="TaskFunction" />
+        </EntityType>
+        <Association Name="FK_TaskFunctions_Tasks">
+          <End Type="FunctionModel.Task" Role="Task" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="FunctionModel.TaskFunction" Role="TaskFunction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="TaskUID" />
+            </Principal>
+            <Dependent Role="TaskFunction">
+              <PropertyRef Name="TaskUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TaskFunctionParamValue">
+          <Key>
+            <PropertyRef Name="TaskUID" />
+            <PropertyRef Name="TaskFunctionUID" />
+            <PropertyRef Name="TaskFunctionParamUID" />
+            <PropertyRef Name="TaskFunctionParamValue1" />
+          </Key>
+          <Property Name="TaskUID" Type="Int32" Nullable="false" />
+          <Property Name="TaskFunctionUID" Type="Int32" Nullable="false" />
+          <Property Name="TaskFunctionParamUID" Type="Int32" Nullable="false" />
+          <Property Name="TaskFunctionParamValue1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FunctionModelStoreContainer" CdmEntityContainer="ReflectionDemoEntities">
+          <EntitySetMapping Name="FunctionParameters">
+            <EntityTypeMapping TypeName="FunctionModel.FunctionParameter">
+              <MappingFragment StoreEntitySet="FunctionParameters">
+                <ScalarProperty Name="ParameterID" ColumnName="ParameterID" />
+                <ScalarProperty Name="FunctionID" ColumnName="FunctionID" />
+                <ScalarProperty Name="ParameterName" ColumnName="ParameterName" />
+                <ScalarProperty Name="DataType" ColumnName="DataType" />
+                <ScalarProperty Name="RequireFlag" ColumnName="RequireFlag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Functions">
+            <EntityTypeMapping TypeName="FunctionModel.Function">
+              <MappingFragment StoreEntitySet="Functions">
+                <ScalarProperty Name="FunctionID" ColumnName="FunctionID" />
+                <ScalarProperty Name="FunctionLabel" ColumnName="FunctionLabel" />
+                <ScalarProperty Name="DllName" ColumnName="DllName" />
+                <ScalarProperty Name="SpaceName" ColumnName="SpaceName" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="FunctionName" ColumnName="FunctionName" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskFunctions">
+            <EntityTypeMapping TypeName="FunctionModel.TaskFunction">
+              <MappingFragment StoreEntitySet="TaskFunctions">
+                <ScalarProperty Name="ExecuteCondition" ColumnName="ExecuteCondition" />
+                <ScalarProperty Name="ExecutionOrder" ColumnName="ExecutionOrder" />
+                <ScalarProperty Name="FunctionUID" ColumnName="FunctionUID" />
+                <ScalarProperty Name="TaskUID" ColumnName="TaskUID" />
+                <ScalarProperty Name="TaskFunctionUID" ColumnName="TaskFunctionUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tasks">
+            <EntityTypeMapping TypeName="FunctionModel.Task">
+              <MappingFragment StoreEntitySet="Tasks">
+                <ScalarProperty Name="TaskName" ColumnName="TaskName" />
+                <ScalarProperty Name="TaskUID" ColumnName="TaskUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskFunctionParamValues">
+            <EntityTypeMapping TypeName="FunctionModel.TaskFunctionParamValue">
+              <MappingFragment StoreEntitySet="TaskFunctionParamValues">
+                <ScalarProperty Name="TaskFunctionParamValue1" ColumnName="TaskFunctionParamValue" />
+                <ScalarProperty Name="TaskFunctionParamUID" ColumnName="TaskFunctionParamUID" />
+                <ScalarProperty Name="TaskFunctionUID" ColumnName="TaskFunctionUID" />
+                <ScalarProperty Name="TaskUID" ColumnName="TaskUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="87a5e63850cc41c896d0529081dfc2e0" Name="Diagram1">
+        <EntityTypeShape EntityType="FunctionModel.FunctionParameter" Width="1.625" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FunctionModel.Function" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="FunctionModel.FK_Parameters_Functions" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="FunctionModel.TaskFunction" Width="1.5" PointX="3" PointY="4.875" />
+        <EntityTypeShape EntityType="FunctionModel.Task" Width="1.5" PointX="0.75" PointY="5.125" />
+        <AssociationConnector Association="FunctionModel.FK_TaskFunctions_Tasks" />
+        <EntityTypeShape EntityType="FunctionModel.TaskFunctionParamValue" Width="3.125" PointX="5.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
