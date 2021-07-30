@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetOne" targetNamespace="http://tempuri.org/DataSetOne.xsd" xmlns:mstns="http://tempuri.org/DataSetOne.xsd" xmlns="http://tempuri.org/DataSetOne.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="_1119ConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="_1119ConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.CSharpAdvanced.Properties.Settings.GlobalReference.Default._1119ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetOne" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetOne" msprop:Generator_UserDSName="DataSetOne">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="StatementApprovedStatus" msprop:Generator_TableClassName="StatementApprovedStatusDataTable" msprop:Generator_TableVarName="tableStatementApprovedStatus" msprop:Generator_TablePropName="StatementApprovedStatus" msprop:Generator_RowDeletingName="StatementApprovedStatusRowDeleting" msprop:Generator_RowChangingName="StatementApprovedStatusRowChanging" msprop:Generator_RowEvHandlerName="StatementApprovedStatusRowChangeEventHandler" msprop:Generator_RowDeletedName="StatementApprovedStatusRowDeleted" msprop:Generator_UserTableName="StatementApprovedStatus" msprop:Generator_RowChangedName="StatementApprovedStatusRowChanged" msprop:Generator_RowEvArgName="StatementApprovedStatusRowChangeEvent" msprop:Generator_RowClassName="StatementApprovedStatusRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="StatementUID" msprop:Generator_ColumnVarNameInTable="columnStatementUID" msprop:Generator_ColumnPropNameInRow="StatementUID" msprop:Generator_ColumnPropNameInTable="StatementUIDColumn" msprop:Generator_UserColumnName="StatementUID" type="xs:long" />
+              <xs:element name="ApprovedStatus" msprop:Generator_ColumnVarNameInTable="columnApprovedStatus" msprop:Generator_ColumnPropNameInRow="ApprovedStatus" msprop:Generator_ColumnPropNameInTable="ApprovedStatusColumn" msprop:Generator_UserColumnName="ApprovedStatus" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OperationTime" msprop:Generator_ColumnVarNameInTable="columnOperationTime" msprop:Generator_ColumnPropNameInRow="OperationTime" msprop:Generator_ColumnPropNameInTable="OperationTimeColumn" msprop:Generator_UserColumnName="OperationTime" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CnoocNotes" msprop:Generator_TableClassName="CnoocNotesDataTable" msprop:Generator_TableVarName="tableCnoocNotes" msprop:Generator_TablePropName="CnoocNotes" msprop:Generator_RowDeletingName="CnoocNotesRowDeleting" msprop:Generator_RowChangingName="CnoocNotesRowChanging" msprop:Generator_RowEvHandlerName="CnoocNotesRowChangeEventHandler" msprop:Generator_RowDeletedName="CnoocNotesRowDeleted" msprop:Generator_UserTableName="CnoocNotes" msprop:Generator_RowChangedName="CnoocNotesRowChanged" msprop:Generator_RowEvArgName="CnoocNotesRowChangeEvent" msprop:Generator_RowClassName="CnoocNotesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DealUID" msprop:Generator_ColumnVarNameInTable="columnDealUID" msprop:Generator_ColumnPropNameInRow="DealUID" msprop:Generator_ColumnPropNameInTable="DealUIDColumn" msprop:Generator_UserColumnName="DealUID" type="xs:long" />
+              <xs:element name="VersionSEQ" msprop:Generator_ColumnVarNameInTable="columnVersionSEQ" msprop:Generator_ColumnPropNameInRow="VersionSEQ" msprop:Generator_ColumnPropNameInTable="VersionSEQColumn" msprop:Generator_UserColumnName="VersionSEQ" type="xs:short" />
+              <xs:element name="NoteSEQ" msprop:Generator_ColumnVarNameInTable="columnNoteSEQ" msprop:Generator_ColumnPropNameInRow="NoteSEQ" msprop:Generator_ColumnPropNameInTable="NoteSEQColumn" msprop:Generator_UserColumnName="NoteSEQ" type="xs:int" />
+              <xs:element name="NoteNumber" msprop:Generator_ColumnVarNameInTable="columnNoteNumber" msprop:Generator_ColumnPropNameInRow="NoteNumber" msprop:Generator_ColumnPropNameInTable="NoteNumberColumn" msprop:Generator_UserColumnName="NoteNumber" type="xs:int" minOccurs="0" />
+              <xs:element name="NoteType" msprop:Generator_ColumnVarNameInTable="columnNoteType" msprop:Generator_ColumnPropNameInRow="NoteType" msprop:Generator_ColumnPropNameInTable="NoteTypeColumn" msprop:Generator_UserColumnName="NoteType" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Category" msprop:Generator_ColumnVarNameInTable="columnCategory" msprop:Generator_ColumnPropNameInRow="Category" msprop:Generator_ColumnPropNameInTable="CategoryColumn" msprop:Generator_UserColumnName="Category" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Notes" msprop:Generator_ColumnVarNameInTable="columnNotes" msprop:Generator_ColumnPropNameInRow="Notes" msprop:Generator_ColumnPropNameInTable="NotesColumn" msprop:Generator_UserColumnName="Notes">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FlowToDocuments" msprop:Generator_ColumnVarNameInTable="columnFlowToDocuments" msprop:Generator_ColumnPropNameInRow="FlowToDocuments" msprop:Generator_ColumnPropNameInTable="FlowToDocumentsColumn" msprop:Generator_UserColumnName="FlowToDocuments">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FlowToConfirmation" msprop:Generator_ColumnVarNameInTable="columnFlowToConfirmation" msprop:Generator_ColumnPropNameInRow="FlowToConfirmation" msprop:Generator_ColumnPropNameInTable="FlowToConfirmationColumn" msprop:Generator_UserColumnName="FlowToConfirmation">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:StatementApprovedStatus" />
+      <xs:field xpath="mstns:StatementUID" />
+    </xs:unique>
+    <xs:unique name="CnoocNotes_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:CnoocNotes" />
+      <xs:field xpath="mstns:DealUID" />
+      <xs:field xpath="mstns:VersionSEQ" />
+      <xs:field xpath="mstns:NoteSEQ" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
