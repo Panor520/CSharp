@@ -6,9 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AspNetCore.BLL\AspNetCore.BLL.csproj" />
     <ProjectReference Include="..\AspNetCore.Factory\AspNetCore.Factory.csproj" />
-    <ProjectReference Include="..\AspNetCore.IBLL\AspNetCore.IBLL.csproj" />
+    <ProjectReference Include="..\AspNetCore.Interface\AspNetCore.Interface.csproj" />
   </ItemGroup>
 
 </Project>
