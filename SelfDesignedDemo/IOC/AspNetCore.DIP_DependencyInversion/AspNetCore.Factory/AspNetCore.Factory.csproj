@@ -1,14 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AspNetCore.BLL\AspNetCore.BLL.csproj" />
-    <ProjectReference Include="..\AspNetCore.Factory\AspNetCore.Factory.csproj" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\AspNetCore.IBLL\AspNetCore.IBLL.csproj" />
+    <ProjectReference Include="..\AspNetCore.IDAL\AspNetCore.IDAL.csproj" />
   </ItemGroup>
 
 </Project>
