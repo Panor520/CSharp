@@ -5,11 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\AspNetCore.Interface\AspNetCore.Interface.csproj" />
+    <ProjectReference Include="..\AspNetCore.Service\AspNetCore.Service.csproj" />
   </ItemGroup>
 
 </Project>

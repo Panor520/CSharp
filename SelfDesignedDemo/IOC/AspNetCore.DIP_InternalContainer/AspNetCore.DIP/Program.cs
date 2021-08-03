@@ -1,6 +1,7 @@
 ﻿using System;
 using AspNetCore.Interface;
 using AspNetCore.Factory;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace AspNetCore.DIP
 {
@@ -8,7 +9,7 @@ namespace AspNetCore.DIP
     {
         static void Main(string[] args)
         {
-            #region 利用自定义的SimpleFactory生成对象
+            #region 利用自定义的SimpleFactory生成对象，同时发现传参问题
             {
                 IMicrophone microphone = SimpleFactory.ServiceMicrophoneCreateInstance();
             }
@@ -20,8 +21,9 @@ namespace AspNetCore.DIP
                 IPower power1 = SimpleFactory.ServicePowerCreateInstanceArr();
             }
             //下面来解决上面的问题①
-            {//利用内置容器
-
+            {//利用内置IOC容器 把这块的实现放到NormalFactory中
+                Console.WriteLine("------------------------ASPNETCORE内置容器ServiceCollection-----------------------------");
+                NormalFactory.ServiceCollection();
             }
             #endregion
 
