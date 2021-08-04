@@ -14,4 +14,10 @@
     <ProjectReference Include="..\AspNetCore.Interface\AspNetCore.Interface.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="AutoFac.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

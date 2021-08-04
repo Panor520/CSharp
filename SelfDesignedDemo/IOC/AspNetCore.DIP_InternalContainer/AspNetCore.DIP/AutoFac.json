@@ -1,0 +1,46 @@
+//这是配置文件的固定写法
+{
+  "components": [
+    {
+      "type": "AspNetCore.Service.Applephone,AspNetCore.Service", //固定格式： 实现类名,实现类程序集名称
+      "services": [
+        {
+          "type": "AspNetCore.Interface.IPhone,AspNetCore.Interface" //固定格式： 抽象类名，抽象类程序集名称
+        }
+      ],
+      "instanceScope": "single-instance", //固定
+      "injectProperties": true //是否属性注入
+    },
+    {
+      "type": "AspNetCore.Service.Microphone,AspNetCore.Service",
+      "services": [
+        {
+          "type": "AspNetCore.Interface.IMicrophone,AspNetCore.Interface"
+        }
+      ],
+      "instanceScope": "single-instance",
+      "injectProperties": true
+    },
+    {
+      "type": "AspNetCore.Service.Power,AspNetCore.Service",
+      "services": [
+        {
+          "type": "AspNetCore.Interface.IPower,AspNetCore.Interface"
+        }
+      ],
+      "instanceScope": "single-instance",
+      "injectProperties": true
+    },
+    {
+      "type": "AspNetCore.Service.Headphone,AspNetCore.Service",
+      "services": [
+        {
+          "type": "AspNetCore.Interface.IHeadphone,AspNetCore.Interface"
+        }
+      ],
+      "instanceScope": "single-instance",
+      "injectProperties": true
+    }
+
+  ]
+}
